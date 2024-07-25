@@ -7,6 +7,7 @@ triangle of n
 
 
 def pascal_triangle(n):
+    """representing the Pascal’s"""
 
     last = 1
     if n <= 0:
