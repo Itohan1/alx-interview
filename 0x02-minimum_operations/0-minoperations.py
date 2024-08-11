@@ -16,37 +16,18 @@
 """
 
 
-def isprime(n):
-    """This function check if the element is a prime number"""
-
-    i = 2
-    if n <= 1:
-        return False
-
-    while i * i <= n:
-        if n % i == 0:
-            return False
-        i += 1
-    return True
-
-
 def minOperations(n):
-    """ The number is either 1, a prime number or divisble by 2, 3, 5 qnd 7 """
+    """Calculates minimum number of operations"""
 
-    list_num = [2, 3, 5, 7]
+    operations = 0
+    factor = 2
 
-    if isprime(n) or n == 1:
-        return f"Min number of operations to reach {n} characters: {n}"
-
-    elif n <= 0:
+    if n <= 1:
         return 0
 
-    else:
-        list_addition = []
-        while list_num:
-            div = list_num.pop()
-
-            if n % div == 0:
-                addition = div + (n / div)
-                list_addition.append(int(addition))
-        return list_addition[0]
+    while n > 1:
+        while n % factor == 0:
+            operations += factor
+            n //= factor
+        factor += 1
+    return operations
