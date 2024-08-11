@@ -38,7 +38,7 @@ def minOperations(n):
     if isprime(n) or n == 1:
         return f"Min number of operations to reach {n} characters: {n}"
 
-    elif n == 0:
+    elif n <= 0:
         return 0
 
     else:
