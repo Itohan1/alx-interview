@@ -16,6 +16,20 @@
 """
 
 
+def isprime(n):
+    """This function check if the element is a prime number"""
+
+    i = 2
+    if n <= 1:
+        return False
+
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 1
+    return True
+
+
 def minOperations(n):
     """ The number is either 1, a prime number or divisble by 2, 3, 5 qnd 7 """
 
