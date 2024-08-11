@@ -18,11 +18,7 @@ from sympy import isprime
 
 
 def minOperations(n):
-    """
-       The number is either 1, a
-       prime number or divisble
-       by 2, 3, 5 qnd 7
-    """
+    """ The number is either 1, a prime number or divisble by 2, 3, 5 qnd 7 """
 
     list_num = [2, 3, 5, 7]
 
