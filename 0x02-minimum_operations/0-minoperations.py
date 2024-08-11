@@ -14,7 +14,6 @@
    Returns an integer
    If n is impossible to achieve, return 0
 """
-from sympy import isprime
 
 
 def minOperations(n):
