@@ -20,10 +20,7 @@ for line in sys.stdin:
         print(f"File size: {total_size}")
     for i in sort_it:
         d_random = random.randint(1, 6)
-        if i != 500:
-         print(f"{i}: {d_random}")
+        print(f"{i}: {d_random}")
         if i == 500:
-            print(f"{i}: {d_random}")
-            print(f"File size: {total_size}")
-    
+            print(f"File size: {total_size}") 
 i += 1
