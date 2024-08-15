@@ -1,27 +1,48 @@
 #!/usr/bin/python3
 """a script that reads stdin line by line and computes metrics"""
 import sys
-import random
+import signal
 
 
 i = 0
-status_code = []
+status_codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 total_size = 0
 
-for line in sys.stdin:
-    line = line.strip()
-    string_line = str(line)
-    split_it = int(string_line.split(" ")[-2])
-    file_size = int(string_line.split(" ")[-1])
-    total_size += file_size
-    if split_it not in status_code:
-        status_code.append(split_it)
-        sort_it = sorted(status_code)
-    if i % 10 == 0 or KeyboardInterrupt:
-        print(f"File size: {total_size}")
-    for i in sort_it:
-        d_random = random.randint(1, 6)
-        print(f"{i}: {d_random}")
-        if i == 500:
-            print(f"File size: {total_size}") 
-i += 1
+
+def print_code():
+    """Prints the status code"""
+    print(f"File size: {total_size}")
+    for code in sorted(status_codes):
+        if status_codes[code] > 0:
+            print(f"{code}: {status_codes[code]}")
+
+
+def handle(signum, frame):
+    """Handles the error signal"""
+
+    sys.exit(0)
+
+
+signal.signal(signal.SIGINT, handle)
+
+try:
+    for line in sys.stdin:
+        i += 1
+        line = line.split()
+        if len(line) < 7:
+            continue
+        try:
+            status_code = int(line[-2])
+            file_size = int(line[-1])
+        except (ValueError, IndexError):
+            continue
+
+        total_size += file_size
+        if status_code in status_codes:
+            status_codes[status_code] += 1
+
+        if i % 10 == 0:
+            print_code()
+
+except KeyboardInterrupt:
+    sys.exit(0)
