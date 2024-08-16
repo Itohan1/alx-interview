@@ -44,5 +44,5 @@ try:
         if i % 10 == 0:
             print_code()
 
-except KeyboardInterrupt:
-    sys.exit(0)
+except Exception as e:
+    print_code()
