@@ -16,15 +16,6 @@ def print_code():
         if status_codes[code] > 0:
             print(f"{code}: {status_codes[code]}")
 
-
-def handle(signum, frame):
-    """Handles the error signal"""
-    print_code()
-    sys.exit(0)
-
-
-signal.signal(signal.SIGINT, handle)
-
 try:
     for line in sys.stdin:
         i += 1
@@ -44,5 +35,5 @@ try:
         if i % 10 == 0:
             print_code()
 
-except Exception as e:
+finally:
     print_code()
