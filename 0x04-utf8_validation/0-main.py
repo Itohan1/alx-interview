@@ -16,3 +16,9 @@ print(validUTF8(data))
 
 data = [467, 133, 108]
 print(validUTF8(data))
+
+data = [345, 467]
+print(validUTF8(data))
+
+data = [250, 145, 145, 145, 145]
+print(validUTF8(data))
