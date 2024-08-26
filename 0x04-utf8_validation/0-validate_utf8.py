@@ -12,9 +12,7 @@ def validUTF8(data):
     n = 0
     for v in data:
         if n > 0:
-            if v >> 6 == 0b10:
-                return True
-            else:
+            if v >> 6 != 0b10:
                 return False
             n -= 1
         elif n == 0:
@@ -26,8 +24,8 @@ def validUTF8(data):
                 n == 2
             if v >> 3 == 0b11110:
                 n = 3
-        else:
-            return False
+            else:
+                return False
         n += 1
 
     if n != 0:
