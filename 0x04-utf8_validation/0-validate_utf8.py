@@ -18,11 +18,11 @@ def validUTF8(data):
         elif n == 0:
             if v >> 7 == 0:
                 continue
-            elif v >> 5 == 0b110:
+            if v >> 5 == 0b110:
                 n = 1
-            elif v >> 4 == 0b1110:
+            if v >> 4 == 0b1110:
                 n = 2
-            elif v >> 3 == 0b11110:
+            if v >> 3 == 0b11110:
                 n = 3
             else:
                 return False
