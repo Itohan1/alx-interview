@@ -24,6 +24,8 @@ def validUTF8(data):
                 n = 2
             elif v >> 3 == 0b11110:
                 n = 3
+            else:
+                return False
         else:
             return False
     if n != 0:
