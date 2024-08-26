@@ -12,18 +12,19 @@ def validUTF8(data):
     n = 0
     for v in data:
         if n > 0:
-            if v >> 6 == 0b10:
+            if v >> 6 == 10:
                 return True
             else:
                 return False
+            n -= 1
         elif n == 0:
             if v >> 7 == 0:
                 continue
-            if v >> 5 == 0b110:
+            if v >> 5 == 110:
                 n = 1
-            if v >> 4 == 0b1110:
+            if v >> 4 == 1110:
                 n == 2
-            if v >> 3 == 0b11110:
+            if v >> 3 == 11110:
                 n = 3
         else:
             return False
