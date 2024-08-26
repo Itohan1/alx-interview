@@ -15,7 +15,7 @@ def validUTF8(data):
             if v >> 6 != 0b10:
                 return False
             n -= 1
-        if n == 0:
+        elif n == 0:
             if v >> 7 == 0:
                 continue
             if v >> 5 == 0b110:
@@ -24,8 +24,8 @@ def validUTF8(data):
                 n = 2
             if v >> 3 == 0b11110:
                 n = 3
-            else:
-                return False
+        else:
+            return False
     if n != 0:
         return False
     else:
