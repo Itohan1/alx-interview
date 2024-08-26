@@ -26,8 +26,6 @@ def validUTF8(data):
                 n = 3
             else:
                 return False
-        else:
-            return False
     if n != 0:
         return False
     else:
