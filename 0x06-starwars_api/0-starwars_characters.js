@@ -3,7 +3,7 @@
 const request = require('request');
 
 request('https://swapi-api.hbtn.io/api/films/' + process.argv[2], function (error, response, body) {
-  if (error) throw err;
+  if (error) throw error;
   const role = JSON.parse(body).characters;
   exactOrder(role, 0);
 });
