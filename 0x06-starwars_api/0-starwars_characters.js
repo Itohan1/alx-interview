@@ -1,26 +1,18 @@
 #!/usr/bin/node
 // Get characters frim star wars api
-const args = process.argv[2];
+const request = require('request');
 
-async function getRequest () {
-  const response = await fetch('https://swapi-api.alx-tools.com/api/films/');
-  let j = 0;
-  const result = await response.json();
-  if (!result || !Array.isArray(result.results)) {
-    console.error('No results found');
-    return;
-  }
-  for (const movie of result.results) {
-    j += 1;
-    const q = String(j);
-    if (q === args) {
-      for (const url of movie.characters) {
-        const newCheck = await fetch(url);
-        const fetchJson = await newCheck.json();
-        console.log(fetchJson.name);
-      }
-    }
-  }
-}
+request('https://swapi-api.hbtn.io/api/films/' + process.argv[2], function (error, response, body) {
+  if (error) throw err;
+  const role = JSON.parse(body).characters;
+  exactOrder(role, 0);
+});
 
-getRequest();
+const exactOrder = (role, x) => {
+  if (x === role.length) return;
+  request(role[x], function (error, response, body) {
+    if (error) throw error;
+    console.log(JSON.parse(body).name);
+    exactOrder(role, x + 1);
+  });
+};
