@@ -5,33 +5,23 @@
 """
 
 
-def closed_perimeter(grid):
-    """Check closed parameter"""
-    new_list = []
-    main_list = []
-    k = 0
-    for i in grid:
-        if k != 0 and k != len(grid) - 1:
-            for j in range(len(i)):
-                if j == 0 and i[j] == '0':
-                    continue
-                elif j > 0 and j < len(i) - 1:
-                    new_list.append(i[j])
-                elif (j == 0 and i[j] == '1') or \
-                        (j == len(i) - 1 and i[j] == '1'):
-                    return('Not a grid')
-            main_list.append(new_list)
-            new_list = []
-        k += 1
-    return main_list
-
-
 def island_perimeter(grid):
     """Island Perimeter"""
 
-    new_grid = closed_perimeter(grid)
+    peri = 0
 
-    k = 0
-    for i in new_grid:
-        k += 1
-    return k * len(i)
+    rows = len(grid)
+    column = len(grid[0])
+
+    for r in range(rows):
+        for c in range(column):
+            if grid[r][c] == 1:
+                if r == 0 or grid[r - 1][c] == 0:
+                    peri += 1
+                if r == rows - 1 or grid[r + 1][c] == 0:
+                    peri += 1
+                if c == 0 or grid[r][c - 1] == 0:
+                    peri += 1
+                if c == column - 1 or grid[r][c + 1] == 0:
+                    peri += 1
+    return peri
