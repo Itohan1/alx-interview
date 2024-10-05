@@ -14,8 +14,9 @@ def isWinner(x, nums):
             if sieve[i]:
                 for j in range(i * i, n + 1, i):
                     sieve[j] = False
-        return [i for i, prime in enumerate(sieve) if prime]
+        return sieve
 
+    maxn = max(nums)
     maria = 0
     ben = 0
 
@@ -23,17 +24,11 @@ def isWinner(x, nums):
         if n == 1:
             ben += 1
             continue
-        primes = sieve_of_eratosthenes(n)
-        turn = 0
-        remain = set(range(1, n + 1))
-        for prime in primes:
-            if prime in remain:
-                multiples = set(range(prime, n + 1, prime))
-                remain -= multiples
+        primes = sieve_of_eratosthenes(maxn)
 
-                turn ^= 1
+        count = sum(primes[2:n+1])
 
-        if turn == 1:
+        if count % 2 == 0:
             ben += 1
         else:
             maria += 1
