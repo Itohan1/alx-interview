@@ -16,12 +16,15 @@ def isWinner(x, nums):
                     sieve[j] = False
         return sieve
 
+    if x == 0 or not nums:
+        return None
+
     maxn = max(nums)
     maria = 0
     ben = 0
 
     for n in nums:
-        if n == 1:
+        if n < 2:
             ben += 1
             continue
         primes = sieve_of_eratosthenes(maxn)
