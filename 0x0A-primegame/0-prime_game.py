@@ -16,7 +16,7 @@ def isWinner(x, nums):
                     sieve[j] = False
         return sieve
 
-    if x == 0 or not nums:
+    if x < 1 or not nums:
         return None
 
     maxn = max(nums)
