@@ -40,4 +40,4 @@ def isWinner(x, nums):
         return 'Ben'
 
     else:
-        return 'Ben'
+        return None
